@@ -65,7 +65,11 @@ const UPDATE_DOCUMENT_ORDER = async (
     if (error) {
       throw new Error(error.details[0].message.replace(/"/g, ""));
     }
-    let { max_order } = await MAX_ORDER(modelName, query_obj, order_field);
+    let { max_order } = await MAX_DOCUMENT_ORDER(
+      modelName,
+      query_obj,
+      order_field
+    );
     if (current_order > max_order) {
       throw new Error("Order can not be greater than max order :" + max_order);
     }
