@@ -35,7 +35,6 @@ const BlogSchema = new Schema({
   description:{
     type:String,
   },
-
   category_id:{
     type:Schema.Types.ObjectId,
     ref:"ref_to_your_category_model"
