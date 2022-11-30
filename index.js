@@ -4,7 +4,7 @@ const {
   change_delete_order_validator,
   reoder_validator,
 } = require("./validation");
-
+// MAX_DOCUMENT_ORDER
 const MAX_DOCUMENT_ORDER = async (modelName, query_obj = {}, order_field) => {
   let resp = {
     error: false,
@@ -40,7 +40,7 @@ const MAX_DOCUMENT_ORDER = async (modelName, query_obj = {}, order_field) => {
     return resp;
   }
 };
-
+//UPDATE_DOCUMENT_ORDER
 const UPDATE_DOCUMENT_ORDER = async (
   _id,
   current_order,
@@ -106,7 +106,7 @@ const UPDATE_DOCUMENT_ORDER = async (
     return resp;
   }
 };
-
+//CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED
 const CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED = async (
   _id,
   order,
@@ -150,7 +150,7 @@ const CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED = async (
     return resp;
   }
 };
-
+//REORDER_ALL_DOCUMENTS
 const REORDER_ALL_DOCUMENTS = async (
   modelName,
   query_obj = {},
