@@ -19,9 +19,7 @@ const change_order_validator = (
   order_field
 ) => {
   const schema = Joi.object({
-    _id: Joi.any()
-      .regex(/^[0-9a-fA-F]{24}$/)
-      .required(),
+    _id: Joi.any().required(),
     current_order: Joi.number().required().min(1),
     past_order: Joi.number().required(),
     modelName: Joi.any().required(),
@@ -46,9 +44,7 @@ const change_delete_order_validator = (
   order_field
 ) => {
   const schema = Joi.object({
-    _id: Joi.any()
-      .regex(/^[0-9a-fA-F]{24}$/)
-      .required(),
+    _id: Joi.any().required(),
     current_order: Joi.number().required().min(1),
     modelName: Joi.any().required(),
     query_obj: Joi.object(),

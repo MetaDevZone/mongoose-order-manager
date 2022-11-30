@@ -136,7 +136,7 @@ const CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED = async (
     }
 
     query_obj._id = { $ne: _id };
-    query_obj[order_field] = { $gte: order_field };
+    query_obj[order_field] = { $gte: order };
     let x = await modelName
       .find(query_obj)
       .sort({ [order_field]: 1 })
@@ -144,6 +144,7 @@ const CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED = async (
 
     const promise = x.map(async (Obj) => {
       Obj[order_field] = Obj[order_field] - 1;
+
       await Obj.save();
     });
     await Promise.all(promise);
@@ -170,17 +171,16 @@ const REORDER_ALL_DOCUMENTS = async (
     if (error) {
       throw new Error(error.details[0].message.replace(/"/g, ""));
     }
-    let x = await modelName
-      .find(query_obj)
-      .sort({ [order_field]: 1 })
-      .select({ [order_field]: 1 });
+    let x = await modelName.find(query_obj).sort({ [order_field]: 1 });
     let order = 1;
     const promise = x.map(async (Obj) => {
       Obj[order_field] = order;
-      await Obj.save();
       order++;
+      await Obj.save();
     });
+
     await Promise.all(promise);
+
     return "All documents are reordered";
   } catch (error) {
     resp.error = true;
