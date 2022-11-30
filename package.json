@@ -1,0 +1,29 @@
+{
+  "name": "mongoose-order-manager",
+  "version": "1.0.0",
+  "description": "This package is a simple order manager for your mongodb documents. You can use this package for your projects to get maximun order number for your documents. Update order of a specific document with respect to other documents for higher order number or lower order number You can also change order of other documents if a document is deleted.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Order",
+    "Manager",
+    "MongoDB",
+    "Document",
+    "mongoose",
+    "order-manager",
+    "express"
+  ],
+  "author": "Meta Dev Zone",
+  "license": "ISC",
+  "dependencies": {
+    "joi": "^17.7.0",
+    "joi-objectid": "^4.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaDevZone/order-manager.git"
+  },
+  "homepage": "https://github.com/MetaDevZone/order-manager.git"
+}
