@@ -26,8 +26,7 @@ const MAX_DOCUMENT_ORDER = async (modelName, query_obj = {}, order_field) => {
     x = await modelName
       .findOne(query_obj)
       .sort({ [order_field]: -1 })
-      .limit(1)
-      .select({ [order_field]: 1, _id: 0 });
+      .limit(1);
 
     if (x) {
       max_order = x[order_field];
@@ -79,10 +78,7 @@ const UPDATE_DOCUMENT_ORDER = async (
     } else if (past_order > current_order) {
       query_obj._id = { $ne: _id };
       query_obj[order_field] = { $gte: current_order, $lte: past_order };
-      let x = await modelName
-        .find(query_obj)
-        .sort({ [order_field]: 1 })
-        .select({ [order_field]: 1 });
+      let x = await modelName.find(query_obj).sort({ [order_field]: 1 });
       const promise = x.map(async (Obj) => {
         Obj[order_field] = Obj[order_field] + 1;
         await Obj.save();
@@ -91,10 +87,7 @@ const UPDATE_DOCUMENT_ORDER = async (
     } else if (past_order < current_order) {
       query_obj._id = { $ne: _id };
       query_obj.order = { $gte: past_order, $lte: current_order };
-      let x = await modelName
-        .find(query_obj)
-        .sort({ [order_field]: 1 })
-        .select({ [order_field]: 1 });
+      let x = await modelName.find(query_obj).sort({ [order_field]: 1 });
 
       const promise = x.map(async (Obj) => {
         Obj[order_field] = Obj[order_field] - 1;
@@ -137,10 +130,7 @@ const CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED = async (
 
     query_obj._id = { $ne: _id };
     query_obj[order_field] = { $gte: order };
-    let x = await modelName
-      .find(query_obj)
-      .sort({ [order_field]: 1 })
-      .select({ [order_field]: 1 });
+    let x = await modelName.find(query_obj).sort({ [order_field]: 1 });
 
     const promise = x.map(async (Obj) => {
       Obj[order_field] = Obj[order_field] - 1;
