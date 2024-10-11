@@ -5,6 +5,15 @@ const {
   reoder_validator,
 } = require("./validation");
 // MAX_DOCUMENT_ORDER
+
+/**
+ *
+ * @param {*} modelName - Model Name
+ * @param {*} query_obj - Query Object
+ * @param {*} order_field - Order Field Name like order, sequence etc
+ * @returns {Object} resp - {error: false, error_message: "", max_order: 0}
+ * @description - This function will return the maximum order of the document
+ */
 const MAX_DOCUMENT_ORDER = async (modelName, query_obj = {}, order_field) => {
   let resp = {
     error: false,
@@ -40,6 +49,20 @@ const MAX_DOCUMENT_ORDER = async (modelName, query_obj = {}, order_field) => {
   }
 };
 //UPDATE_DOCUMENT_ORDER
+
+/**
+ * @param {*} _id - Document ID
+ * @param {*} current_order - Current Order of the document
+ * @param {*} past_order - Past Order of the document
+ * @param {*} modelName - Model Name
+ * @param {*} query_obj - Query Object
+ * @param {*} order_field - Order Field Name like order, sequence etc
+ * @returns {Object} resp - {error: false, error_message: ""}
+ * @returns {String} resp - "Order Changed Successfully"
+ * @returns {String} resp - "Order is same as before"
+ * @description - This function will update the order of the document
+ */
+
 const UPDATE_DOCUMENT_ORDER = async (
   _id,
   current_order,
@@ -104,6 +127,18 @@ const UPDATE_DOCUMENT_ORDER = async (
   }
 };
 //CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED
+
+/**
+ *
+ * @param {*} _id - Document ID
+ * @param {*} order - Order of the document
+ * @param {*} modelName - Model Name
+ * @param {*} query_obj - Query Object
+ * @param {*} order_field - Order Field Name like order, sequence etc
+ * @returns 
+ * @description - This function will change the order of the document except the deleted document
+ */
+
 const CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED = async (
   _id,
   order,
@@ -146,6 +181,16 @@ const CHANGE_DOCUMENT_ORDER_EXCEPT_DELETED = async (
   }
 };
 //REORDER_ALL_DOCUMENTS
+
+/**
+ *
+ * @param {*} modelName - Model Name
+ * @param {*} query_obj - Query Object
+ * @param {*} order_field - Order Field Name like order, sequence etc
+ * @returns
+ * @description - This function will reorder all the documents
+ */
+
 const REORDER_ALL_DOCUMENTS = async (
   modelName,
   query_obj = {},

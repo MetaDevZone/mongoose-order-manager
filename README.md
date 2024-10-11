@@ -16,6 +16,10 @@ npm install mongoose-order-manager --save
 
 ```
 
+## Examples
+
+You can find example code in the `example` folder of this package.
+
 ## Support
 
 - [Stack Overflow](https://stackoverflowteams.com/c/meta-dev-zone)
